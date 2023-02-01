@@ -2,7 +2,7 @@
 
 A sample project to use in testing workshops with the theme of testing and "more testable" systems.
 
-_Based on the [minimalist-serverless-starter][https://github.com/mikaelvesavuori/minimalist-serverless-starter] project._
+_Based on the [minimalist-serverless-starter](https://github.com/mikaelvesavuori/minimalist-serverless-starter) project._
 
 ---
 
