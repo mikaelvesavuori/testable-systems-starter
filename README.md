@@ -14,7 +14,7 @@ Configurations for ESLint and Prettier are reasonable starting points. The TypeS
 
 ## Structure
 
-The application separates AWS Lambda-specific handler stuff in `src/handler.ts` and business/application logic in `src/index.ts`. Tests for the business/application logic are in the `tests` folder and use [AVA](https://github.com/avajs/ava).
+The application starting point (the handler) is located at `src/index.ts`. The tests and other "finished" materials are in the `__finished` folder and might need updates to their import paths when you place them in the root again.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Clone, fork, or download the repo as you normally would. Run `npm install`.
 ## Commands
 
 - `npm start`: Run application locally
-- `npm test`: Test the business/application logic with AVA
+- `npm test`: Test the business/application logic with Jest
 - `npm run build`: Package application with Serverless Framework
 - `npm run deploy`: Deploy application to AWS with Serverless Framework
 - `npm run teardown`: Remove stack from AWS
