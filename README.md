@@ -14,7 +14,7 @@ Configurations for ESLint and Prettier are reasonable starting points. The TypeS
 
 ## Structure
 
-The application starting point (the handler) is located at `src/index.ts`. The tests and other "finished" materials are in the `__finished` folder and might need updates to their import paths when you place them in the root again.
+The application starting point (the handler) is located at `src/index.ts`. The tests and other "finished" materials are in the `__finished__` folder and might need updates to their import paths when you place them in the root again.
 
 ## Prerequisites
 
