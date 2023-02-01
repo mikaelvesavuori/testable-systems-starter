@@ -14,7 +14,7 @@ Configurations for ESLint and Prettier are reasonable starting points. The TypeS
 
 ## Structure
 
-The application starting point (the handler) is located at `src/index.ts`. The tests and other "finished" materials are in the `__finished__` folder and might need updates to their import paths when you place them in the root again.
+The application starting point (the handler) is located at `src/handler.ts`. The tests and other "finished" materials are in the `__finished__` folder and might need updates to their import paths when you place them in the root again.
 
 ## Prerequisites
 
@@ -47,3 +47,51 @@ Which should respond back with:
 ```bash
 "Hi there!"
 ```
+
+---
+
+## Workshop flow
+
+The workshop is meant to be dynamic and interactive, but the below outlines an overall learning/experience flow for participants:
+
+### Basics
+
+1. Look at `tests/unit/start.test.ts` to familiarize audience with the structure of a typical unit test.
+2. Look at `src/handler.ts`. How can we test this?
+3. Implement unit test on entire handler.
+4. Split out "business logic" from the handler. How is testing, reliability and confidence improved by doing this?
+5. Implement unit test on business logic.
+
+Present:
+
+- "Contra-variant testing": The benefits of testing the majority of code on a use-case level rather than per-function level.
+- Confidence can be causated by determinism (in code)
+
+### Dynamic input
+
+New business requirement: We need support for dynamic input, i.e. "your name".
+
+7. Implement new functionality. How do we support both the new and old behaviors?
+8. Implement validation functions. How could we be supported by using API-level schema validation?
+
+Present:
+
+- The dangers of POCOs/POJOs and mutability
+- Zero trust - validate everywhere but don't be an idiot, leverage prior validation
+
+9. Implement DTO function and domain object to represent valid state, plus any additional tests needs.
+
+### Third-party dependency
+
+New business requirement: For "un-named" requests, we want to send back a response like "Hi there, Luke Skywalker!".
+
+10. How do we test an external service?
+11. Getting test data and storing it co-located to our code and tests.
+12. API response mocking using our test data. What about schema changes?
+13. Handling errors and problem states correctly.
+14. Implement tests.
+
+Present:
+
+- Testing vs monitoring and observability
+- Fallacies of distributed computing - when does it matter to do integration testing?
