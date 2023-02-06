@@ -70,11 +70,13 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 - **Scope**: We use the concept generally, for a more extensive take see [What is in your Testing Scope?](https://medium.com/wix-engineering/what-is-in-your-testing-scope-8846714d4358)
 - **Boundary**: See for example [Defining Test Boundaries – An example](https://www.simpleorientedarchitecture.com/defining-test-boundaries/) and [Avoid Test Duplication](https://martinfowler.com/articles/practical-test-pyramid.html#AvoidTestDuplication)
+- **[Contra-variant testing](https://blog.cleancoder.com/uncle-bob/2017/10/03/TestContravariance.html)**
+- **[Determinism](https://martinfowler.com/articles/nonDeterminism.html)**
 
 #### Present and discuss
 
-- "[Contra-variant testing](https://blog.cleancoder.com/uncle-bob/2017/10/03/TestContravariance.html)": The benefits of testing the majority of code on a use-case level rather than per-function level.
-- Confidence can be causated by [determinism](https://martinfowler.com/articles/nonDeterminism.html) (in code) - determinism can be achieved by controlling side effects.
+- "Contra-variant testing": The benefits of testing the majority of code on a use-case level rather than per-function level.
+- Confidence can be causated by determinism (in code) - determinism can be achieved by controlling side effects.
 
 #### Steps
 
@@ -88,7 +90,7 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 #### New business requirement
 
-> We need support for dynamic input, i.e. using _**your**_ name.
+> We need to communicate each request to our service by emitting an event.
 
 #### Concepts
 
