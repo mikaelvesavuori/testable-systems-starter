@@ -1,5 +1,6 @@
 import { greet } from './usecases/greet_v3';
 import { Greeting } from './domain/valueObjects/Greeting';
+import { Emitter } from './infrastructure/emitter/Emitter';
 
 export const handler = async (event: Record<string, any>) => {
   try {
@@ -11,7 +12,8 @@ export const handler = async (event: Record<string, any>) => {
 
 async function handleSuccess(event: Record<string, any>) {
   const greeting = new Greeting(event);
-  const response = await greet(greeting);
+  const emitter = new Emitter();
+  const response = await greet(greeting, emitter);
 
   return {
     statusCode: 200,
