@@ -1,9 +1,10 @@
 import { getStarWarsName } from '../application/getStarWarsName';
 
-import { GreetingInput } from '../interfaces/GreetingInput';
+import { Greeting } from '../domain/valueObjects/Greeting';
 
-export async function greet(name?: GreetingInput): Promise<string> {
+export async function greet(greeting: Greeting): Promise<string> {
   const message = 'Hi there';
+  const name = greeting.toDTO();
 
   if (name) return `${message}, ${name}`;
 

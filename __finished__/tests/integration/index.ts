@@ -2,8 +2,7 @@ import Ajv from 'ajv';
 
 import { assertions } from './assertions';
 
-const INTEGRATION_ENDPOINT =
-  process.env.INTEGRATION_ENDPOINT || 'https://eqovm9x2h8.execute-api.eu-north-1.amazonaws.com/dev';
+const INTEGRATION_ENDPOINT = process.env.INTEGRATION_ENDPOINT || 'http://localhost:3000/dev'; //https://eqovm9x2h8.execute-api.eu-north-1.amazonaws.com/dev
 
 async function runIntegrationTests() {
   if (!INTEGRATION_ENDPOINT) throw new Error('Missing INTEGRATION_ENDPOINT!');
@@ -32,7 +31,7 @@ async function runIntegrationTests() {
        */
       const isMatch = (() => {
         if (schema) return test(schema, response);
-        if (is) response === schema?.is;
+        if (is) return response === is;
         return JSON.stringify(response) === JSON.stringify('OK');
       })();
 

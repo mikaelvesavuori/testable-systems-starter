@@ -10,14 +10,11 @@ export const assertions: (AssertionGet | AssertionPost)[] = [
   {
     name: 'It should greet you with a custom name',
     payload: {
-      method: 'POST',
-      path: 'greet'
+      method: 'GET',
+      path: 'greet?name=Someone'
     },
-    body: {},
-    schema: {
-      type: 'string'
-    }
-  } as AssertionPost
+    is: 'Hi there, Someone!'
+  } as AssertionGet
 ];
 
 type Assertion = {

@@ -9,8 +9,7 @@ export class Greeting {
   }
 
   public fromDTO(event: Record<string, any>) {
-    const name = event?.queryStringParameters?.name;
-    if (!name) throw new Error('Missing "name" in query string parameters!');
+    const name = event?.queryStringParameters?.name || '';
     this.name = name;
   }
 

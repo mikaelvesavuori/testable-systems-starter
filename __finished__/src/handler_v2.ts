@@ -1,5 +1,5 @@
-import { greet } from '../__finished__/src/usecases/greet_v1';
-import { getDTO } from '../__finished__/src/application/getDTO';
+import { greet } from './usecases/greet_v2';
+import { getDTO } from './application/getDTO';
 
 export const handler = async (event: Record<string, any>) => {
   const name = getDTO(event);

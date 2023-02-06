@@ -17,7 +17,7 @@
     "start": "npx sls offline --reloadHandler",
     "test": "npx jest tests --coverage",
     "test:watch": "npx jest --clearCache && npx jest --watch",
-    "test:integration": "npx ts-node tests/integration/index.ts",
+    "test:integration": "npx ts-node __finished__/tests/integration/index.ts",
     "build": "npx sls package",
     "deploy": "npx sls deploy",
     "teardown": "npx sls remove",

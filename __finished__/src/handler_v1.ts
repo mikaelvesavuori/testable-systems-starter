@@ -1,7 +1,7 @@
-import { greet } from './usecases/greet';
+import { greet } from './usecases/greet_v1';
 
 export const handler = async () => {
-  const response = await greet();
+  const response = greet();
 
   return {
     statusCode: 200,

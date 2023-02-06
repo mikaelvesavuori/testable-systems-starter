@@ -90,6 +90,61 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 ---
 
+### Dynamic input
+
+#### New business requirement
+
+> We need support for dynamic input/output, i.e. providing and responding with _**your**_ name.
+
+#### Concepts
+
+- **Mutability**
+  - Read [Tiny Programming Principles: Immutability](https://www.tiny.cloud/blog/mutable-vs-immutable-javascript/) and [Immutable object](https://en.wikipedia.org/wiki/Immutable_object)
+  - See also [To mutate or not – on Entities and Value Objects](https://www.schibsted.pl/blog/immutability-entities-and-value-objects/) and the approach in [Elegant Objects](https://www.elegantobjects.org)
+- **Validation**
+- **Invariant**
+- **"Always valid" domain model**
+  - Read [Always-Valid Domain Model](https://vkhorikov.medium.com/always-valid-domain-model-706e5f3d24b0), also covers the above concepts
+
+#### Present and discuss
+
+- The dangers of "dumb" [POCOs/POJOs](https://enterprisecraftsmanship.com/posts/dto-vs-value-object-vs-poco/) and mutability of data.
+- Leverage prior logical validation if input remains unchanged/un-mutated.
+
+#### Steps
+
+6. Implement new functionality. How do we support both the new and old behaviors?
+7. Think about validation: At which levels can/should we validate? Once, or across all boundaries? How could we be supported by using API-level schema validation? (See `api/Greeter.validator.json` for an example)
+8. Implement validation functions. Demonstrate both structural/compositional ("functional") approach and object-oriented (DDD-inspired: value objects, Data Transfer Object, "always valid state") approach.
+9. Implement any additional tests.
+
+---
+
+### Third-party dependency
+
+#### New business requirement
+
+> For "un-named" requests, we want to send back a response so it looks something like `Hi there, Luke Skywalker!`.
+
+#### Concepts
+
+- **[Observability](https://www.ibm.com/se-en/topics/observability)**
+
+#### Present and discuss
+
+- Testing vs monitoring and observability.
+- Fallacies of distributed computing - What is it really that we want to test when we conduct integration testing?
+
+#### Steps
+
+10. How do we test an external service?
+11. Getting test data and storing it co-located to our code and tests.
+12. API response mocking using our test data. What about schema changes?
+13. Handling errors and problem states correctly.
+14. Implement tests.
+
+---
+
 ### Handling persistence and other side effects
 
 #### New business requirement
@@ -107,60 +162,6 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 #### Steps
 
-6. Implement an event emitter (see `src/infrastructure/emitter/Emitter.start.ts`). What problems do we get when using this for our testing?
-7. Abstract the implementation into an interface and inject a dummy/mock/local variant for testing.
-8. Making an implementation testable ("test aware") up until the point of potentially adverse side effects.
-
----
-
-### Dynamic input + "Versioning"
-
-#### New business requirement
-
-> We need support for dynamic input/output, i.e. providing and responding with _**your**_ name.
-
-#### Concepts
-
-- **Mutability**
-  - Read [Tiny Programming Principles: Immutability](https://www.tiny.cloud/blog/mutable-vs-immutable-javascript/) and [Immutable object](https://en.wikipedia.org/wiki/Immutable_object)
-- **Validation**
-- **Invariant**
-- **"Always valid" domain model**
-  - Read [Always-Valid Domain Model](https://vkhorikov.medium.com/always-valid-domain-model-706e5f3d24b0), also covers the above concepts
-
-#### Present and discuss
-
-- The dangers of POCOs/POJOs and mutability.
-- Zero trust - validate everywhere but "don't be an idiot", leverage prior logical validation if input remains unchanged/un-mutated.
-
-#### Steps
-
-9. Implement new functionality. How do we support both the new and old behaviors?
-10. Think about validation: At which levels can/should we validate? Once, or across all boundaries? How could we be supported by using API-level schema validation? (See `api/Greeter.validator.json` for an example)
-11. Implement validation functions. Demonstrate both structural/compositional ("functional") approach and object-oriented (DDD-inspired: value objects, Data Transfer Object, "always valid state") approach.
-12. Implement any additional tests.
-
----
-
-### Third-party dependency
-
-#### New business requirement
-
-> For "un-named" requests, we want to send back a response so it looks something like `Hi there, Luke Skywalker!`.
-
-#### Concepts
-
-- **[Observability](https://www.ibm.com/se-en/topics/observability)**
-
-#### Present and discuss
-
-- Testing vs monitoring and observability.
-- Fallacies of distributed computing - when does it matter to do integration testing?
-
-#### Steps
-
-13. How do we test an external service?
-14. Getting test data and storing it co-located to our code and tests.
-15. API response mocking using our test data. What about schema changes?
-16. Handling errors and problem states correctly.
-17. Implement tests.
+15. Implement an event emitter (see `__finished__/src/infrastructure/emitter/Emitter.start.ts`). What problems do we get when using this for our testing?
+16. Abstract the implementation into an interface and inject a dummy/mock/local variant for testing.
+17. Making an implementation testable ("test aware") up until the point of producing potentially adverse side effects.

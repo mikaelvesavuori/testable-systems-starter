@@ -1,13 +1,27 @@
-import { greet } from '../__finished__/src/usecases/greet_v2';
-
-import { Greeting } from '../__finished__/src/domain/valueObjects/Greeting';
+import { greet } from './usecases/greet_v3';
+import { Greeting } from './domain/valueObjects/Greeting';
 
 export const handler = async (event: Record<string, any>) => {
+  try {
+    return await handleSuccess(event);
+  } catch (error: any) {
+    return await handleFailure(error);
+  }
+};
+
+async function handleSuccess(event: Record<string, any>) {
   const greeting = new Greeting(event);
-  const response = greet(greeting.toDTO());
+  const response = await greet(greeting);
 
   return {
     statusCode: 200,
     body: JSON.stringify(response)
   };
-};
+}
+
+async function handleFailure(error: any) {
+  return {
+    statusCode: 400,
+    body: JSON.stringify(error.message)
+  };
+}

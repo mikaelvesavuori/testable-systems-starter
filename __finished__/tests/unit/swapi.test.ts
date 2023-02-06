@@ -1,4 +1,4 @@
-import { getStarWarsName } from '../../__finished__/src/swapi';
+import { getStarWarsName } from '../../../__finished__/src/application/getStarWarsName';
 
 describe('Success cases', () => {
   test('It should get a name from the Star Wars universe', async () => {
