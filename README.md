@@ -68,8 +68,10 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 #### Concepts
 
-- **Scope**: We use the concept generally, for a more extensive take see [What is in your Testing Scope?](https://medium.com/wix-engineering/what-is-in-your-testing-scope-8846714d4358)
-- **Boundary**: See for example [Defining Test Boundaries – An example](https://www.simpleorientedarchitecture.com/defining-test-boundaries/) and [Avoid Test Duplication](https://martinfowler.com/articles/practical-test-pyramid.html#AvoidTestDuplication)
+- **Scope**
+  - We use the concept generally, for a more extensive take see [What is in your Testing Scope?](https://medium.com/wix-engineering/what-is-in-your-testing-scope-8846714d4358)
+- **Boundary**
+  - See for example [Defining Test Boundaries – An example](https://www.simpleorientedarchitecture.com/defining-test-boundaries/) and [Avoid Test Duplication](https://martinfowler.com/articles/practical-test-pyramid.html#AvoidTestDuplication)
 - **[Contra-variant testing](https://blog.cleancoder.com/uncle-bob/2017/10/03/TestContravariance.html)**
 - **[Determinism](https://martinfowler.com/articles/nonDeterminism.html)**
 
@@ -86,6 +88,8 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 4. Split out "business logic" from the handler. How is testing, reliability and confidence improved by doing this?
 5. Reimplement the unit test on business logic, not on the handler.
 
+---
+
 ### Handling persistence and other side effects
 
 #### New business requirement
@@ -94,11 +98,18 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 #### Concepts
 
-- **Side effects**: Read the high-level [Side effect (computer science)](<https://en.wikipedia.org/wiki/Side_effect_(computer_science)>) and more practical [Side effects](https://dev.to/ruizb/side-effects-21fc)
+- **Side effects**
+  - Read the high-level [Side effect (computer science)](<https://en.wikipedia.org/wiki/Side_effect_(computer_science)>) and more practical [Side effects](https://dev.to/ruizb/side-effects-21fc)
+
+#### Present and discuss
+
+- How to test around boundaries of systems, especially when using managed products like message queues and databases.
 
 #### Steps
 
-6. asdf
+6. Implement an event emitter (see `src/infrastructure/emitter/Emitter.start.ts`). What problems do we get when using this for our testing?
+7. Abstract the implementation into an interface and inject a dummy/mock/local variant for testing.
+8. Making an implementation testable ("test aware") up until the point of potentially adverse side effects.
 
 ---
 
@@ -106,27 +117,28 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 #### New business requirement
 
-> We need support for dynamic input/output, i.e. using _**your**_ name.
+> We need support for dynamic input/output, i.e. providing and responding with _**your**_ name.
 
 #### Concepts
 
-- **Mutability**: Read [Tiny Programming Principles: Immutability](https://www.tiny.cloud/blog/mutable-vs-immutable-javascript/) and [Immutable object](https://en.wikipedia.org/wiki/Immutable_object)
+- **Mutability**
+  - Read [Tiny Programming Principles: Immutability](https://www.tiny.cloud/blog/mutable-vs-immutable-javascript/) and [Immutable object](https://en.wikipedia.org/wiki/Immutable_object)
 - **Validation**
 - **Invariant**
-- **"Always valid" domain model**: Read [Always-Valid Domain Model](https://vkhorikov.medium.com/always-valid-domain-model-706e5f3d24b0), also covers the above concepts
+- **"Always valid" domain model**
+  - Read [Always-Valid Domain Model](https://vkhorikov.medium.com/always-valid-domain-model-706e5f3d24b0), also covers the above concepts
 
 #### Present and discuss
 
 - The dangers of POCOs/POJOs and mutability.
-- Zero trust - validate everywhere but "don't be an idiot", leverage prior validation.
+- Zero trust - validate everywhere but "don't be an idiot", leverage prior logical validation if input remains unchanged/un-mutated.
 
 #### Steps
 
-7. Implement new functionality. How do we support both the new and old behaviors?
-8. Think about validation: At which levels can/should we validate? Once, or across all boundaries? How could we be supported by using API-level schema validation? (See `api/Greeter.validator.json` for an example)
-9. Implement validation functions. Demonstrate both structural/compositional ("functional") approach and object-oriented (DDD-inspired: value objects, Data Transfer Object, "always valid state") approach.
-
-10. Implement any additional tests.
+9. Implement new functionality. How do we support both the new and old behaviors?
+10. Think about validation: At which levels can/should we validate? Once, or across all boundaries? How could we be supported by using API-level schema validation? (See `api/Greeter.validator.json` for an example)
+11. Implement validation functions. Demonstrate both structural/compositional ("functional") approach and object-oriented (DDD-inspired: value objects, Data Transfer Object, "always valid state") approach.
+12. Implement any additional tests.
 
 ---
 
@@ -138,7 +150,7 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 #### Concepts
 
-- Observability
+- **[Observability](https://www.ibm.com/se-en/topics/observability)**
 
 #### Present and discuss
 
@@ -147,8 +159,8 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 #### Steps
 
-11. How do we test an external service?
-12. Getting test data and storing it co-located to our code and tests.
-13. API response mocking using our test data. What about schema changes?
-14. Handling errors and problem states correctly.
-15. Implement tests.
+13. How do we test an external service?
+14. Getting test data and storing it co-located to our code and tests.
+15. API response mocking using our test data. What about schema changes?
+16. Handling errors and problem states correctly.
+17. Implement tests.

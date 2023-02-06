@@ -1,6 +1,6 @@
 module.exports = {
   collectCoverage: true,
-  collectCoverageFrom: ['./src/**/*'],
+  //collectCoverageFrom: ['./src/**/*'],
   coverageDirectory: 'jest-coverage',
   coverageThreshold: {
     global: {
@@ -12,7 +12,7 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest'
   },
   setupFiles: ['<rootDir>/jest.env.js'],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  //setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleFileExtensions: ['js', 'ts'],
   testMatch: ['<rootDir>/tests/unit/*.test.ts'],
   testPathIgnorePatterns: ['/node_modules/'],

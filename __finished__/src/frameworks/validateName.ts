@@ -1,7 +1,8 @@
 const MIN_LENGTH = 2;
 const MAX_LENGTH = 10;
 
-export function validate(input: string) {
+export function validateName(input: string) {
+  if (!input) throw new Error('Missing input!');
   const length = input.length;
 
   if (length < MIN_LENGTH) throw new Error('Too few characters in input!');
