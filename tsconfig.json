@@ -20,6 +20,6 @@
     "strictFunctionTypes": true,
     "skipLibCheck": true
   },
-  "include": ["./src/**/*.ts", "./tests/**/*.ts", "__finished__/src/swapi.ts"],
+  "include": ["./src/**/*.ts", "./tests/**/*.ts"],
   "exclude": ["./node_modules/", "./lib/"]
 }

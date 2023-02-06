@@ -56,7 +56,7 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 ### Basics
 
-1. Look at `tests/unit/start.test.ts` to familiarize audience with the structure of a typical unit test.
+1. Look at `tests/unit/demo.test.ts` to familiarize audience with the structure of a typical unit test.
 2. Look at `src/handler.ts`. How can we test this?
 3. Implement unit test on entire handler.
 4. Split out "business logic" from the handler. How is testing, reliability and confidence improved by doing this?
@@ -67,7 +67,7 @@ Present:
 - "Contra-variant testing": The benefits of testing the majority of code on a use-case level rather than per-function level.
 - Confidence can be causated by determinism (in code)
 
-### Dynamic input
+### Dynamic input + "Versioning"
 
 New business requirement: We need support for dynamic input, i.e. "your name".
 
