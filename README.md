@@ -1,12 +1,18 @@
 # Testable Systems Starter
 
-A sample project to use in testing workshops with the theme of testing and "more testable" systems.
+A sample project to use in testing workshops with the theme of testing and building "more testable" distributed (serverless) systems.
+
+Relevant theoretical materials include:
+
+- [Distributed Systems — Key Concepts & Patterns](https://engineering.klarna.com/distributed-systems-key-concepts-patterns-d4d5236b9816)
+- [Fallacies of distributed computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)
+
+Other good, practical material includes:
+
+- [Understand Legacy Code](https://understandlegacycode.com) is great, see for example [A quick way to add tests when code has database or HTTP calls](https://understandlegacycode.com/blog/quick-way-to-add-tests-when-code-does-side-effects/)
+- [You Don't Hate Mocks; You Hate Side-Effects](https://blog.thecodewhisperer.com/permalink/you-dont-hate-mocks-you-hate-side-effects)
 
 _Based on the [minimalist-serverless-starter](https://github.com/mikaelvesavuori/minimalist-serverless-starter) project._
-
----
-
-Just a sample minimalist starter to run a modern AWS-deployed serverless [TypeScript](https://www.typescriptlang.org) application with some quality-of-life tooling such as [ESLint](https://eslint.org) and [Prettier](https://prettier.io). Packages and deploys using [Serverless Framework](https://www.serverless.com) and bundles it using [esbuild](https://github.com/evanw/esbuild).
 
 ## Configurations
 
@@ -14,7 +20,7 @@ Configurations for ESLint and Prettier are reasonable starting points. The TypeS
 
 ## Structure
 
-The application starting point (the handler) is located at `src/handler.ts`. The tests and other "finished" materials are in the `__finished__` folder and might need updates to their import paths when you place them in the root again.
+The application starting point (the handler) is located at `src/handler.ts` and a first demonstrational test is at `tests/unit/demo.test.ts`. The rest of the tests and other "finished" materials are in the `__finished__` folder and might need updates to their import paths when you place them in the root again.
 
 ## Prerequisites
 
@@ -50,48 +56,97 @@ Which should respond back with:
 
 ---
 
-## Workshop flow
+## Workshop
 
-The workshop is meant to be dynamic and interactive, but the below outlines an overall learning/experience flow for participants:
+The workshop is meant to be dynamic and interactive, but the below outlines an overall learning/experience flow for participants.
 
 ### Basics
 
-1. Look at `tests/unit/demo.test.ts` to familiarize audience with the structure of a typical unit test.
-2. Look at `src/handler.ts`. How can we test this?
-3. Implement unit test on entire handler.
+#### New business requirement
+
+> We need a service to greet people.
+
+#### Concepts
+
+- **Scope**: We use the concept generally, for a more extensive take see [What is in your Testing Scope?](https://medium.com/wix-engineering/what-is-in-your-testing-scope-8846714d4358)
+- **Boundary**: See for example [Defining Test Boundaries – An example](https://www.simpleorientedarchitecture.com/defining-test-boundaries/) and [Avoid Test Duplication](https://martinfowler.com/articles/practical-test-pyramid.html#AvoidTestDuplication)
+
+#### Present and discuss
+
+- "[Contra-variant testing](https://blog.cleancoder.com/uncle-bob/2017/10/03/TestContravariance.html)": The benefits of testing the majority of code on a use-case level rather than per-function level.
+- Confidence can be causated by [determinism](https://martinfowler.com/articles/nonDeterminism.html) (in code) - determinism can be achieved by controlling side effects.
+
+#### Steps
+
+1. Look at `tests/unit/demo.test.ts` to familiarize yourself with the structure of a typical unit test.
+2. Look at `src/handler.ts`. How can we test this? How might you think about the _scope_ of a given test - bigger, smaller and their pros/cons?
+3. Implement a unit test on the entire handler. What do you foresee as issues with this solution?
 4. Split out "business logic" from the handler. How is testing, reliability and confidence improved by doing this?
-5. Implement unit test on business logic.
+5. Reimplement the unit test on business logic, not on the handler.
 
-Present:
+### Handling persistence and other side effects
 
-- "Contra-variant testing": The benefits of testing the majority of code on a use-case level rather than per-function level.
-- Confidence can be causated by determinism (in code)
+#### New business requirement
+
+> We need support for dynamic input, i.e. using _**your**_ name.
+
+#### Concepts
+
+- **Side effects**: Read the high-level [Side effect (computer science)](<https://en.wikipedia.org/wiki/Side_effect_(computer_science)>) and more practical [Side effects](https://dev.to/ruizb/side-effects-21fc)
+
+#### Steps
+
+6. asdf
+
+---
 
 ### Dynamic input + "Versioning"
 
-New business requirement: We need support for dynamic input, i.e. "your name".
+#### New business requirement
+
+> We need support for dynamic input/output, i.e. using _**your**_ name.
+
+#### Concepts
+
+- **Mutability**: Read [Tiny Programming Principles: Immutability](https://www.tiny.cloud/blog/mutable-vs-immutable-javascript/) and [Immutable object](https://en.wikipedia.org/wiki/Immutable_object)
+- **Validation**
+- **Invariant**
+- **"Always valid" domain model**: Read [Always-Valid Domain Model](https://vkhorikov.medium.com/always-valid-domain-model-706e5f3d24b0), also covers the above concepts
+
+#### Present and discuss
+
+- The dangers of POCOs/POJOs and mutability.
+- Zero trust - validate everywhere but "don't be an idiot", leverage prior validation.
+
+#### Steps
 
 7. Implement new functionality. How do we support both the new and old behaviors?
-8. Implement validation functions. How could we be supported by using API-level schema validation?
+8. Think about validation: At which levels can/should we validate? Once, or across all boundaries? How could we be supported by using API-level schema validation? (See `api/Greeter.validator.json` for an example)
+9. Implement validation functions. Demonstrate both structural/compositional ("functional") approach and object-oriented (DDD-inspired: value objects, Data Transfer Object, "always valid state") approach.
 
-Present:
+10. Implement any additional tests.
 
-- The dangers of POCOs/POJOs and mutability
-- Zero trust - validate everywhere but don't be an idiot, leverage prior validation
-
-9. Implement DTO function and domain object to represent valid state, plus any additional tests needs.
+---
 
 ### Third-party dependency
 
-New business requirement: For "un-named" requests, we want to send back a response like "Hi there, Luke Skywalker!".
+#### New business requirement
 
-10. How do we test an external service?
-11. Getting test data and storing it co-located to our code and tests.
-12. API response mocking using our test data. What about schema changes?
-13. Handling errors and problem states correctly.
-14. Implement tests.
+> For "un-named" requests, we want to send back a response so it looks something like `Hi there, Luke Skywalker!`.
 
-Present:
+#### Concepts
 
-- Testing vs monitoring and observability
+- Observability
+
+#### Present and discuss
+
+- Testing vs monitoring and observability.
 - Fallacies of distributed computing - when does it matter to do integration testing?
+
+#### Steps
+
+11. How do we test an external service?
+12. Getting test data and storing it co-located to our code and tests.
+13. API response mocking using our test data. What about schema changes?
+14. Handling errors and problem states correctly.
+15. Implement tests.

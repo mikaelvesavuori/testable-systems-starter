@@ -1,7 +1,3 @@
-function myFunction() {
-  return '';
-}
-
 describe('Success cases', () => {
   test('It should TODO', async () => {
     // Arrange
@@ -14,3 +10,7 @@ describe('Success cases', () => {
     expect(response).toBe(expected);
   });
 });
+
+function myFunction() {
+  return '';
+}
