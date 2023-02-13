@@ -1,4 +1,5 @@
 import { GreetingInput } from '../interfaces/GreetingInput';
+
 import { validateName } from '../frameworks/validateName';
 
 /**

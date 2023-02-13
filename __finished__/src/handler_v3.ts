@@ -1,5 +1,7 @@
-import { greet } from './usecases/greet_v3';
 import { Greeting } from './domain/valueObjects/Greeting';
+
+import { greet } from './usecases/greet_v3';
+
 import { Emitter } from './infrastructure/emitter/Emitter';
 
 export const handler = async (event: Record<string, any>) => {

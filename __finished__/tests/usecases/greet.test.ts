@@ -1,4 +1,4 @@
-import { greet } from '../../src/usecases/greet_v1';
+import { greet } from '../../__finished__/src/usecases/greet_v1';
 
 describe('Success cases', () => {
   test('It should greet the user', async () => {
