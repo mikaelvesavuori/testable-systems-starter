@@ -42,10 +42,10 @@ Clone, fork, or download the repo as you normally would. Run `npm install`.
 
 ## Running locally
 
-Using `npm start` you can start using the local endpoint `http://localhost:3000/dev/greet` to call the service.
+Using `npm start` you can start using the local endpoint `http://localhost:3000/greet` to call the service.
 
 ```bash
-curl http://localhost:3000/dev/greet
+curl http://localhost:3000/greet
 ```
 
 Which should respond back with:

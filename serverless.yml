@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs18.x
   architecture: arm64
-  stage: ${opt:stage, 'dev'}
+  stage: ${opt:stage, 'prod'}
   region: ${opt:region, 'eu-north-1'}
   memorySize: ${opt:memory, 256}
   timeout: 10
@@ -34,7 +34,7 @@ functions:
     handler: src/handler.handler
     description: Greeting demo
     events:
-      - http:
+      - httpApi:
           method: GET
           path: /greet
           cors: true
