@@ -143,6 +143,8 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 13. Handling errors and problem states correctly.
 14. Implement tests.
 
+Make sure to uncomment `setupFilesAfterEnv` in `jest.config.js` to get the mocking capability working.
+
 ---
 
 ### Handling persistence and other side effects

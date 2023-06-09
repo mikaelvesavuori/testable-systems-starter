@@ -2,7 +2,7 @@ import { PathParams, rest, RestRequest } from 'msw';
 
 const SWAPI_PEOPLE_ENDPOINT = `https://swapi.dev/api/people/*`;
 
-import lukeResponse from '../../__finished__/testdata/response-swapi-people-luke-skywalker.json';
+import lukeResponse from '../../testdata/response-swapi-people-luke-skywalker.json';
 
 const MsgSetMswInterceptedDataFromApi = (url: string) =>
   `[MSW] - Mocking intercepted fetch request data from API: ${url}`;
