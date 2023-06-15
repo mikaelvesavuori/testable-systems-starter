@@ -137,13 +137,13 @@ The workshop is meant to be dynamic and interactive, but the below outlines an o
 
 #### Steps
 
+_**Make sure to uncomment `setupFilesAfterEnv` in `jest.config.js` to get the mocking capability working.**_
+
 10. How do we test an external service?
 11. Getting test data and storing it co-located to our code and tests.
 12. API response mocking using our test data. What about schema changes?
 13. Handling errors and problem states correctly.
 14. Implement tests.
-
-Make sure to uncomment `setupFilesAfterEnv` in `jest.config.js` to get the mocking capability working.
 
 ---
 
